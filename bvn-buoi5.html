@@ -1,0 +1,49 @@
+<!--Yêu cầuHọc viên hoàn thành ứng dụng TodoList với các chức năng sau
+Hiển thị danh sách công việc ban đầu, nếu không có công việc nào trong danh sách thì hiển thị Danh sách công việc trống
+Thêm công việc mới (nếu title rỗng -> alert “Tên công việc không được để trống”)
+Xóa công việc (cần confirm trước khi xóa, sử dụng window.confirm)
+Chỉnh sửa tiêu đề công việc (sử dụng window.prompt cho đơn giản)
+Thay đổi trạng thái công việc (status)-->
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bvn-buoi5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li 
+        {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Todo List</h2>
+    <input type="text" id="todo-input" placeholder="Nhập công việc...">
+    <button onclick="addTodo()">Thêm</button>
+    <ul id="todo-list"></ul>
+    <script src="./bvn-buoi5.js"> </script>
+    
+</body>
+</html>

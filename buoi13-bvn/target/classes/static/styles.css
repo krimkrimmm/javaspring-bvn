@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.container
+ {
+    max-width: 600px;
+    margin: auto;
+}
+
+.related-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.related-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 45%;
+}
+
+
+
+
+
+
+

@@ -1,39 +1,29 @@
 package vn.scrip.buoi13_bvn.repository;
-import org.springframework.stereotype.Repository;
 import vn.scrip.buoi13_bvn.model.Person;
+import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public class PersonRepository {
-    private final List<Person> personList = new ArrayList<>();
+    private List<Person> people = new ArrayList<>();
     public PersonRepository() {
-        // Dữ liệu mẫu
-        personList.add(new Person(1L, "Alice", "Female", 25));
-        personList.add(new Person(2L, "Bob", "Male", 30));
-        personList.add(new Person(3L, "Charlie", "Male", 22));
-        personList.add(new Person(4L, "Diana", "Female", 29));
-    }
+        people.add(new Person(1L, "Alice", "male"));
+        people.add(new Person(2L, "Bob", "male"));
+        people.add(new Person(3L, "Charle", "female"));
+        people.add(new Person(4L, "Emma", "female"));
+        people.add(new Person(5L, "Dave", "male"));
 
+        people.add(new Person(6L, "Fiona", "female"));
+        people.add(new Person(7L, "George", "Male"));
+        people.add(new Person(8L, "Hannah", "male"));
+    }
     public List<Person> findAll() {
-        return new ArrayList<>(personList); // Trả về bản sao danh sách để tránh thay đổi dữ liệu gốc
+        return people;
     }
-
     public Optional<Person> findById(Long id) {
-        return personList.stream().filter(p -> p.getId().equals(id)).findFirst();
-    }
-    public void save(Person person)
-    {
-        personList.add(person);
-    }
-
-    public void deleteById(Long id) {
-        personList.removeIf(p -> p.getId().equals(id));
+        return people.stream().filter(p -> p.getId().equals(id)).findFirst();
     }
 }
-
-
-
-
 

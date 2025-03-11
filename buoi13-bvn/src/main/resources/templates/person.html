@@ -1,29 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Person Detail</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Person Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 50%; margin: auto; }
+        .related { margin-top: 20px; }
+        .related div { border: 1px solid #ddd; padding: 10px; margin-bottom: 5px; }
+    </style>
 </head>
-<div class="container">
-    <h1>Person Details</h1>
-    <p><strong>ID:</strong> <span th:text="${person.id}"></span></p>
-    <p><strong>Name:</strong> <span th:text="${person.name}"></span></p>
-    <p><strong>Gender:</strong> <span th:text="${person.gender}"></span></p>
-    <p><strong>Age:</strong> <span th:text="${person.age}"></span></p>
+<body>
 
-    <h2>Related Persons</h2>
-    <div class="related-list">
-        <div th:each="relatedPerson : ${relatedPersons}" class="related-item">
-            <p><strong>Name:</strong> <span th:text="${relatedPerson.name}"></span></p>
-            <p><strong>Gender:</strong> <span th:text="${relatedPerson.gender}"></span></p>
-            <p><strong>Age:</strong> <span th:text="${relatedPerson.age}"></span></p>
-            <a th:href="@{/person/{id}(id=${relatedPerson.id})}">View Details</a>
+<div class="container">
+    <h2>Thông tin chi tiết</h2>
+    <p>ID: <span th:text="${person.id}"></span></p>
+    <p>Name: <span th:text="${person.name}"></span></p>
+    <p>Gender: <span th:text="${person.gender}"></span></p>
+
+    <h3>Người liên quan</h3>
+    <div class="related">
+        <div th:if="${relatedPersons.isEmpty()}">
+            <p>Không có người liên quan.</p>
+        </div>
+        <div th:each="related : ${relatedPersons}">
+            <p>
+                <a th:href="@{/person/{id}(id=${related.id})}">
+                    <span th:text="${related.name}"></span> - <span th:text="${related.gender}"></span>
+                </a>
+            </p>
         </div>
     </div>
 </div>
-<script th:src="@{/js/main.js}"></script>
 
-    </body>
-    </html>
+</body>
+</html>

@@ -1,0 +1,136 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1a1a1a;
+    padding: 10px 20px;
+}
+
+.navbar-brand img {
+    width: 150px;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-size: 16px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffcc00 !important;
+}
+
+/* Danh sách phim */
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.movie-card {
+    width: 200px;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Poster phim */
+.movie-poster {
+    height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-poster img {
+    transform: scale(1.1);
+}
+
+/* Tiêu đề phim */
+.movie-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Rating phim */
+.movie-rating {
+    color: #ffcc00;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Nút xem trailer */
+.watch-trailer-btn {
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.watch-trailer-btn:hover {
+    background-color: #ffaa00;
+}
+
+/* Review */
+.review-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+}
+
+.review-author-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-content {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+/* Footer */
+.footer {
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.footer p {
+    color: #cccccc;
+}

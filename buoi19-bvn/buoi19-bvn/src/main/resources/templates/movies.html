@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Danh Sách Phim</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Danh Sách Phim</h2>
+    <div class="row">
+        <div th:each="movie : ${movies.content}" class="col-md-4">
+            <div class="card">
+                <img th:src="${movie.thumbnail}" class="card-img-top" alt="Thumbnail">
+                <div class="card-body">
+                    <h5 th:text="${movie.title}" class="card-title"></h5>
+                    <p th:text="${movie.description}" class="card-text"></p>
+                    <a th:href="@{/movies/detail/{id}(id=${movie.id})}" class="btn btn-primary">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination">
+            <li th:each="i : ${#numbers.sequence(0, movies.totalPages - 1)}" class="page-item">
+                <a th:href="@{/movies/{type}(type=${type}, page=${i})}" class="page-link" th:text="${i + 1}"></a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách phim</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Danh sách phim ' + ${type}"></h1>
+
+    <div class="list-group">
+        <div th:each="movie : ${moviePage.content}" class="list-group-item">
+            <h5 th:text="${movie.title}"></h5>
+            <p th:text="${movie.description}"></p>
+        </div>
+    </div>
+
+    <!-- Phân trang -->
+    <nav>
+        <ul class="pagination">
+            <li th:classappend="${moviePage.hasPrevious()} ? '' : 'disabled'" class="page-item">
+                <a th:href="@{'/movies/' + ${type} + '?page=' + ${currentPage - 1}}" class="page-link">Previous</a>
+            </li>
+            <li th:each="i : ${#numbers.sequence(0, moviePage.totalPages - 1)}" th:classappend="${i == currentPage} ? 'active'" class="page-item">
+                <a th:href="@{'/movies/' + ${type} + '?page=' + ${i}}" th:text="${i + 1}" class="page-link"></a>
+            </li>
+            <li th:classappend="${moviePage.hasNext()} ? '' : 'disabled'" class="page-item">
+                <a th:href="@{'/movies/' + ${type} + '?page=' + ${currentPage + 1}}" class="page-link">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
+

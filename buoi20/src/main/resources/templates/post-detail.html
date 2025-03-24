@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chi tiết bài viết</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 th:text="${post.title}" class="mb-3"></h2>
+    <img th:src="${post.thumbnail}" class="img-fluid mb-3" alt="Hình ảnh bài viết">
+    <p class="text-muted">Đăng ngày: <span th:text="${post.publishedAt}"></span></p>
+    <p th:text="${post.content}"></p>
+
+    <hr>
+
+    <h3>Bài viết liên quan</h3>
+    <div class="row">
+        <div th:each="relatedPost : ${relatedPosts}" class="col-md-4">
+            <div class="card mb-3">
+                <img th:src="${relatedPost.thumbnail}" class="card-img-top" alt="Hình ảnh bài viết">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${relatedPost.title}"></h5>
+                    <a th:href="@{'/post/' + ${relatedPost.id}}" class="btn btn-secondary">Xem bài viết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/posts" class="btn btn-primary mt-3">Quay lại danh sách</a>
+</div>
+</body>
+</html>

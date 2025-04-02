@@ -10,7 +10,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>vn.scrip</groupId>
-	<artifactId>buoi21</artifactId>
+	<artifactId>buoi20</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>buoi23</name>
 	<description>movie-app</description>

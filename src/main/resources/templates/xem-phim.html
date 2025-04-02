@@ -71,6 +71,13 @@
             </ol>
         </nav>
 
+        <div class="row mb-4">
+            <video controls>
+                <source th:src="${episode.videoUrl}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
         <div class="row">
             <div class="col-4">
                 <div class="movie-poster">
@@ -144,22 +151,17 @@
                         </div>
                     </div>
                 </div>
-
-                <th:block th:if="${!episodes.isEmpty()}" th:with="episode=${episodes.get(0)}">
-                    <a class="btn btn-danger mt-3 px-5"
-                       th:href="'/xem-phim/' + ${movie.id} + '/' + ${movie.slug} + '?tap=' + ${movie.type.toString().equals('PHIM_BO') ? episode.displayOrder : 'full'}"
-                    >Xem phim</a>
-                </th:block>
             </div>
         </div>
 
         <div class="row" th:if="${movie.type.toString().equals('PHIM_BO')}">
             <h4>Tập phim</h4>
             <div>
-                <a th:each="episode : ${episodes}"
-                   th:href="'/xem-phim/' + ${movie.id} + '/' + ${movie.slug} + '?tap=' + ${episode.displayOrder}"
-                   class="btn btn-dark me-2"
-                   th:text="${episode.name}"
+                <a th:each="e : ${episodes}"
+                   th:href="'/xem-phim/' + ${movie.id} + '/' + ${movie.slug} + '?tap=' + ${e.displayOrder}"
+                   class="btn me-2"
+                   th:classappend="${episode.displayOrder.equals(e.displayOrder) ? 'btn-danger' : 'btn-dark'}"
+                   th:text="${e.name}"
                 >Tập 1</a>
             </div>
         </div>
@@ -442,9 +444,15 @@
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script th:inline="javascript">
+
     let movie = [[${movie}]];
 </script>
 <script th:src="@{/js/movie-detail.js}"></script>
 </body>
-
 </html>
+
+
+
+
+
+

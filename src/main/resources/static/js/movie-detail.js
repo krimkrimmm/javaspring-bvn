@@ -94,6 +94,7 @@ const deleteReview = async (id) => {
     if (!window.confirm("Bạn có chắc chắn muốn xóa review này không?")) {
         return;
     }
+
     try {
         await axios.delete(`/api/reviews/${id}`);
         // Nếu cần cập nhật lại danh sách review cho trang 1, có thể gọi:

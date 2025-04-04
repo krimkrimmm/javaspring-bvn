@@ -1,20 +1,20 @@
+
 // Hàm format ngày theo định dạng dd/MM/yyyy
 const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     let day = date.getDate();
     let month = date.getMonth() + 1;
     let year = date.getFullYear();
-
     day = day < 10 ? '0' + day : day;
     month = month < 10 ? '0' + month : month;
     return `${day}/${month}/${year}`;
 };
+
 // Hàm render danh sách reviews sử dụng template string
 const renderReviews = (reviews) => {
     const html = reviews.map(review => `
         <div class="review-item">
             <div class="review-author d-flex justify-content-between">
-
                 <div class="d-flex">
                     <div class="review-author-avatar">
                         <img src="${review.user.avatar || 'https://homepage.momocdn.net/cinema/momo-cdn-api-220615142913-637909001532744942.jpg'}" alt="">
@@ -24,7 +24,6 @@ const renderReviews = (reviews) => {
                         <p>⭐️ ${review.rating}/10</p>
                     </div>
                 </div>
-
                 <div>
                     <p>${formatDate(review.createdAt)}</p>
                 </div>
@@ -34,27 +33,29 @@ const renderReviews = (reviews) => {
             </div>
             <div class="review-actions mt-2">
                 <button class="btn btn-sm btn-primary">Sửa</button>
-
                 <button class="btn btn-sm btn-danger" onclick="deleteReview(${review.id})">Xóa</button>
             </div>
         </div>
     `).join('');
     document.querySelector('.review-list').innerHTML = html;
 };
+
 // Hàm render phân trang sử dụng template string
 const renderPagination = (totalPages, currentPage) => {
     let paginationHTML = `
-
         <ul class="pagination justify-content-center">
             ${currentPage <= 1
         ? `<li class="page-item disabled"><button class="page-link" disabled>Previous</button></li>`
         : `<li class="page-item"><button class="page-link" onclick="getReviews(${currentPage - 1})">Previous</button></li>`
-    }`;
+    }
+    `;
+
     for (let i = 1; i <= totalPages; i++) {
         paginationHTML += i === currentPage
             ? `<li class="page-item active"><button class="page-link" onclick="getReviews(${i})">${i}</button></li>`
             : `<li class="page-item"><button class="page-link" onclick="getReviews(${i})">${i}</button></li>`;
     }
+
     paginationHTML += `
             ${currentPage >= totalPages
         ? `<li class="page-item disabled"><button class="page-link" disabled>Next</button></li>`
@@ -66,30 +67,18 @@ const renderPagination = (totalPages, currentPage) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Hàm lấy reviews (sử dụng async/await, arrow function và try/catch)
 const getReviews = async (page) => {
     try {
         const movieId = movie.id;
         const response = await axios.get('/api/reviews', {
-            params:
-            {
+            params: {
                 movieId: movieId,
                 page: page,
                 pageSize: 5
             }
         });
+
         // Giả sử API trả về đối tượng có cấu trúc:
         // { content: [...reviews], totalPages: number, number: currentPage (0-indexed) }
         const reviewPage = response.data;
@@ -105,6 +94,7 @@ const deleteReview = async (id) => {
     if (!window.confirm("Bạn có chắc chắn muốn xóa review này không?")) {
         return;
     }
+
     try {
         await axios.delete(`/api/reviews/${id}`);
         // Nếu cần cập nhật lại danh sách review cho trang 1, có thể gọi:
@@ -204,7 +194,6 @@ reviewForm.addEventListener("submit", async (event) => {
         console.log(error);
     }
 });
-
 
 // Khởi chạy load trang đầu tiên
 getReviews(1);
